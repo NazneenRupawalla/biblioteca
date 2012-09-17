@@ -1,12 +1,15 @@
 package com.twu28.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MembersCollection {
 
     private static MembersCollection membersInstance=null;
     private List<Member> memberList=new ArrayList<Member>();
+    private Map<Integer,String> crediatials=new HashMap<Integer,String>();
 
     public static MembersCollection getInstance() {
         if(membersInstance==null)
@@ -18,9 +21,8 @@ public class MembersCollection {
 
     private MembersCollection()
     {
-        memberList.add(new Member("ABC",190));
-        memberList.add(new Member("XYZ",191));
-
+        memberList.add(new Member("ABC",111-1111, "abc"));
+        memberList.add(new Member("XYZ",222-2222, "xyz"));
 
     }
 
@@ -28,13 +30,8 @@ public class MembersCollection {
         return memberList;
     }
 
-    public List<Integer> getUIDOfMembers()
-    {
-        List<Integer> UIDOfMembers=new ArrayList<Integer>();
-        for (Member member  : memberList) {
-             UIDOfMembers.add(member.getUID());
 
-        }
-        return UIDOfMembers;
-   }
+
+
+
 }

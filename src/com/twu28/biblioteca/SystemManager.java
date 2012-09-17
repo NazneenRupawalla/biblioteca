@@ -13,7 +13,7 @@ public class SystemManager implements Printable {
     public static int libraryNum=1;
     private List<Book> books=new ArrayList<Book>();
     private Console console;
-    // private LibraryConsole console=new LibraryConsole();
+    private MemberCredentialsManager loginManager;
 
     public SystemManager() {
 
@@ -27,16 +27,9 @@ public class SystemManager implements Printable {
         for (Book book : books) {
             bookAvailability.put(book.getID(),Boolean.TRUE);
         }
-
-        //TODO add random generator for library card number
-        for (Integer UID : MembersCollection.getInstance().getUIDOfMembers()) {
-            libraryCardNumToMemberUID.put(libraryNum++, UID);
-        }
-
+        loginManager=new MemberCredentialsManager();
 
     }
-
-
 
     //TODO see if two copies of a book are present
     public void displayBooksTheLibraryOwns() {
@@ -68,17 +61,6 @@ public class SystemManager implements Printable {
         bookAvailability.put(bookID,status);
     }
 
-    public int returnLibraryCardNumber(int UID) {
-        int libNum=0;
-        for (Integer libCardNum : libraryCardNumToMemberUID.keySet()) {
-            if (libraryCardNumToMemberUID.get(libCardNum).equals(UID)) {
-
-               libNum=libCardNum;
-               break;
-            }
-        }
-        return libNum;
-    }
 
     @Override
     public void displayItems() {

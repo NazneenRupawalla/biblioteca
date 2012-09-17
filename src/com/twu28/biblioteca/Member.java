@@ -3,12 +3,15 @@ package com.twu28.biblioteca;
 public class Member {
     private String name;
     private int UID;
+    private String password;
 
-    public Member(String name, int UID) {
+    public Member(String name, int UID, String password) {
         this.name=name;
         this.UID=UID;
+        this.password=password;
 
     }
+
 
     @Override
     public boolean equals(Object toBeCompared) {
@@ -19,7 +22,6 @@ public class Member {
 
         if (UID != memberToBeCompared.UID) return true;
         if (name != null ? name.equals(memberToBeCompared.name) : memberToBeCompared.name != null) return true;
-
         return true;
     }
 
@@ -32,5 +34,9 @@ public class Member {
 
     public int getUID() {
         return UID;
+    }
+
+    public String getPassword() {
+         return password;
     }
 }

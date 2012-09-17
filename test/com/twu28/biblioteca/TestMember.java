@@ -9,7 +9,7 @@ public class TestMember {
     @Test
     public void testIfCorrectUIDIsReturned()
     {
-        Member member=new Member("ABC",190);
-        Assert.assertEquals(190,member.getUID());
+        Member member=new Member("ABC",111-1111, "abc");
+        Assert.assertEquals(111-1111,member.getUID());
     }
 }

@@ -47,7 +47,7 @@ public class ConsoleStub implements Console {
                 manager.reserveBookWithGivenID(1);
                 break;
             case 3:
-                printToConsole("Library Card Number:"+manager.returnLibraryCardNumber(190));
+                printToConsole("Please talk to Librarian. Thank you.");
                 break;
             case 4:
                 printToConsole("Exiting");

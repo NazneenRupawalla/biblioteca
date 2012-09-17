@@ -34,6 +34,7 @@ public class ApplicationDriver {
     }
 
     private void navigateAccordingToMenuOption() throws IOException {
+        //do I use command pattern to avoid number-case
             switch(menuOption)
             {
                 case 1:
@@ -46,9 +47,7 @@ public class ApplicationDriver {
                     manager.reserveBookWithGivenID(ID);
                     break;
                 case 3:
-                    console.printToConsole("Enter your UID");
-                    int UID=getConsoleInput();
-                    console.printToConsole("Library Card Number: " +manager.returnLibraryCardNumber(UID));
+                    console.printToConsole("Please talk to Librarian. Thank you.");
                     break;
                 case 4:
                     console.printToConsole("Exiting Application");
@@ -64,7 +63,7 @@ public class ApplicationDriver {
         menu.append("Please choose an option from the menu listed:\n");
         menu.append("1:View the Books\n");
         menu.append("2:Reserve a Book\n");
-        menu.append("3:Ask for Library Card Number\n");
+        menu.append("3:Ask for Details\n");
         menu.append("4:Exit\n");
 
 

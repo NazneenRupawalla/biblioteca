@@ -51,20 +51,6 @@ public class TestSystemManager {
         Assert.assertFalse("We do not have the book yet", systemManager.reserveBookWithGivenID(2));
     }
 
-    @Test
-    public void testIfCorrectLibraryNumberIsReturnedForAParticularUser()
-    {
-        SystemManager systemManager =new SystemManager();
-        Assert.assertEquals(1, systemManager.returnLibraryCardNumber(190));
-    }
-
-    @Test
-    public void testIfZeroIsReturnedIfUserIsNotValid()
-    {
-        SystemManager systemManager =new SystemManager();
-        Assert.assertEquals(0, systemManager.returnLibraryCardNumber(193));
-
-    }
 
 
 }
