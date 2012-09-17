@@ -1,8 +1,5 @@
 package com.twu28.biblioteca;
 
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,21 +57,11 @@ public class SystemManager implements Printable {
             return Boolean.FALSE;
         }
         updateAvailabilityStatusOfBook(bookID, Boolean.FALSE);
-            console.printToConsole("Thank you!Enjoy the Book");
-            return Boolean.TRUE;
+        console.printToConsole("Thank you!Enjoy the Book");
+        return Boolean.TRUE;
            // return issueBookToMember(bookID);
 
     }
-
-//    private void checkIfUserIsAMember() {
-//        System.out.println("Are you a Member");
-
-//    }
-
-//    private String issueBookToMember(int bookID) {
-//
-//
-//    }
 
     private void updateAvailabilityStatusOfBook(int bookID, Boolean status) {
         bookAvailability.remove(bookID);
@@ -83,15 +70,15 @@ public class SystemManager implements Printable {
 
     public int returnLibraryCardNumber(int UID) {
         int libNum=0;
-            for (Integer libCardNum : libraryCardNumToMemberUID.keySet()) {
-                if (libraryCardNumToMemberUID.get(libCardNum).equals(UID)) {
+        for (Integer libCardNum : libraryCardNumToMemberUID.keySet()) {
+            if (libraryCardNumToMemberUID.get(libCardNum).equals(UID)) {
 
-                    libNum=libCardNum;
-                    break;
-                }
+               libNum=libCardNum;
+               break;
             }
-            return libNum;
         }
+        return libNum;
+    }
 
     @Override
     public void displayItems() {

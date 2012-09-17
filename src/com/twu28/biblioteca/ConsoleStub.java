@@ -9,7 +9,8 @@ import java.util.List;
 public class ConsoleStub implements Console {
     List<Integer> menuOptions=new ArrayList<Integer>();
     private String toBePrinted;
-    private int menuOption;
+    private int userInput;
+    SystemManager manager=new SystemManager();
     //SystemManager manager=new SystemManager();
 
     @Override
@@ -20,27 +21,42 @@ public class ConsoleStub implements Console {
 
     @Override
     public int takeInputFromConsole() throws IOException {
-       return menuOption;
+       return userInput;
     }
 
 
 
-    public String getRequiredInputToBePrintedOnConsole() {
+    public String getRequiredOutputToBePrintedOnConsole() {
         return toBePrinted;
     }
 
-    public void setMenuOptionTakenFromUser(int menuOption) {
-        this.menuOption=menuOption;
+    public void setInputTakenFromUser(int userInput) {
+        this.userInput =userInput;
     }
 
     public void startTheRequiredProcess() {
-        SystemManager manager=new SystemManager();
+
         manager.setLibraryConsole(this);
-        switch(menuOption)
+
+        switch(userInput)
         {
             case 1:
                 manager.displayBooksTheLibraryOwns();
                 break;
+            case 2:
+                manager.reserveBookWithGivenID(1);
+                break;
+            case 3:
+                printToConsole("Library Card Number:"+manager.returnLibraryCardNumber(190));
+                break;
+            case 4:
+                printToConsole("Exiting");
+                break;
+            default:
+                printToConsole("Invalid Option");
+                break;
+
+
         }
     }
 }
