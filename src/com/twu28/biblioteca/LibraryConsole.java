@@ -17,10 +17,10 @@ public class LibraryConsole implements Console {
     }
 
     @Override
-    public int takeInputFromConsole() throws IOException {
+    public String takeInputFromConsole() throws IOException {
 
         BufferedReader consoleInput=new BufferedReader(new InputStreamReader(System.in));
-        return Integer.parseInt(consoleInput.readLine());
+        return consoleInput.readLine();
 
     }
 }

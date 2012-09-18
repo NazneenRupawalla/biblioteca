@@ -8,7 +8,7 @@ import java.util.Map;
 public class MemberCredentialsManager {
 
     private List<Member> members=new ArrayList<Member>();
-    private Map<Integer,String> credentials=new HashMap<Integer,String>();
+    private Map<String,String> credentials=new HashMap<String,String>();
 
     public MemberCredentialsManager()
     {
@@ -21,15 +21,15 @@ public class MemberCredentialsManager {
     {
 
         for (Member member : members) {
-            credentials.put(member.getUID(),member.getPassword());
+            credentials.put(member.getUserName(),member.getPassword());
         }
 
     }
 
-    public Boolean validateMember(int userName, String password)
+    public Boolean validateMember(String userName, String password)
     {
-        for (Map.Entry<Integer, String> integerStringEntry : credentials.entrySet()) {
-             return (integerStringEntry.getKey()==userName && integerStringEntry.getValue().equals(password));
+        for (Map.Entry<String, String> integerStringEntry : credentials.entrySet()) {
+             return (integerStringEntry.getKey().equals(userName) && integerStringEntry.getValue().equals(password));
         }
         return false;
     }

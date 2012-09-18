@@ -1,5 +1,6 @@
 package com.twu28.biblioteca;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +10,11 @@ public class SystemManager implements Printable {
 
     Library publicLibrary=null;
     Map<Integer,Boolean> bookAvailability=new HashMap<Integer,Boolean>();
-    public static Map<Integer, Integer> libraryCardNumToMemberUID =new HashMap<Integer, Integer>();
-    public static int libraryNum=1;
     private List<Book> books=new ArrayList<Book>();
     private Console console;
     private MemberCredentialsManager loginManager;
+    private String userName;
+    private Map<String,Integer> memeberIDToBookID=new HashMap<String, Integer>();
 
     public SystemManager() {
 
@@ -41,8 +42,11 @@ public class SystemManager implements Printable {
 
     }
      //TODO ask user for lib card number and associate book with the member
-    public Boolean reserveBookWithGivenID(int bookID) {
-        //checkIfUserIsAMember();
+    public Boolean reserveBookWithGivenID(int bookID) throws IOException {
+        if(!checkIfUserIsAMember()){
+            console.printToConsole("Please check your login credentials");
+            return false;
+        }
         Boolean availability=bookAvailability.get(bookID);
         if(!availability)
         {
@@ -51,9 +55,21 @@ public class SystemManager implements Printable {
         }
         updateAvailabilityStatusOfBook(bookID, Boolean.FALSE);
         console.printToConsole("Thank you!Enjoy the Book");
+        issueBookToMember(bookID);
         return Boolean.TRUE;
-           // return issueBookToMember(bookID);
 
+    }
+
+    private void issueBookToMember(int bookID) {
+        memeberIDToBookID.put(userName,bookID);
+    }
+
+    private Boolean checkIfUserIsAMember() throws IOException {
+        console.printToConsole("Please Login:\nEnter your Username:");
+        userName=console.takeInputFromConsole();
+        console.printToConsole("Enter your password:");
+        String password=console.takeInputFromConsole();
+        return loginManager.validateMember(userName,password);
     }
 
     private void updateAvailabilityStatusOfBook(int bookID, Boolean status) {

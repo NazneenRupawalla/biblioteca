@@ -1,13 +1,13 @@
 package com.twu28.biblioteca;
 
 public class Member {
-    private String name;
-    private int UID;
+    private String memberFirstName;
+    private String userName;
     private String password;
 
-    public Member(String name, int UID, String password) {
-        this.name=name;
-        this.UID=UID;
+    public Member(String name, String username, String password) {
+        this.memberFirstName=name;
+        this.userName=username;
         this.password=password;
 
     }
@@ -20,20 +20,15 @@ public class Member {
 
         Member memberToBeCompared = (Member) toBeCompared;
 
-        if (UID != memberToBeCompared.UID) return true;
-        if (name != null ? name.equals(memberToBeCompared.name) : memberToBeCompared.name != null) return true;
+        if (!userName.equals(memberToBeCompared.userName)) return true;
+        if (memberFirstName != null ? memberFirstName.equals(memberToBeCompared.memberFirstName) : memberToBeCompared.memberFirstName != null) return true;
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + UID;
-        return result;
-    }
 
-    public int getUID() {
-        return UID;
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {

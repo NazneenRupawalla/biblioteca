@@ -9,7 +9,7 @@ import java.util.List;
 public class ConsoleStub implements Console {
     List<Integer> menuOptions=new ArrayList<Integer>();
     private String toBePrinted;
-    private int userInput;
+    private List<String> userInput=new ArrayList<String>();
     SystemManager manager=new SystemManager();
     //SystemManager manager=new SystemManager();
 
@@ -20,8 +20,8 @@ public class ConsoleStub implements Console {
     }
 
     @Override
-    public int takeInputFromConsole() throws IOException {
-       return userInput;
+    public String takeInputFromConsole() throws IOException {
+       return userInput.remove(0);
     }
 
 
@@ -30,15 +30,15 @@ public class ConsoleStub implements Console {
         return toBePrinted;
     }
 
-    public void setInputTakenFromUser(int userInput) {
-        this.userInput =userInput;
+    public void setInputTakenFromUser(String userInput) {
+        this.userInput.add(userInput);
     }
 
-    public void startTheRequiredProcess() {
+    public void startTheRequiredProcess() throws IOException {
 
         manager.setLibraryConsole(this);
 
-        switch(userInput)
+        switch(Integer.parseInt(userInput.remove(0)))
         {
             case 1:
                 manager.displayBooksTheLibraryOwns();
@@ -47,7 +47,7 @@ public class ConsoleStub implements Console {
                 manager.reserveBookWithGivenID(1);
                 break;
             case 3:
-                printToConsole("Please talk to Librarian. Thank you.");
+                printToConsole("Please talk to the Librarian. Thank you.");
                 break;
             case 4:
                 printToConsole("Exiting");
@@ -55,8 +55,12 @@ public class ConsoleStub implements Console {
             default:
                 printToConsole("Invalid Option");
                 break;
-
-
         }
+    }
+
+    public void setLoginCredentialsFromUser(String credentials)
+    {
+
+      this.userInput.add(credentials);
     }
 }

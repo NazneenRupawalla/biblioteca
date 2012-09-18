@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public interface Console {
     public void printToConsole(String toBePrinted);
-    public int takeInputFromConsole() throws IOException;
+    public String takeInputFromConsole() throws IOException;
 
 }

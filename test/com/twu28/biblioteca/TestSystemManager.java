@@ -4,6 +4,7 @@ package com.twu28.biblioteca;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class TestSystemManager {
     public void testBooksAvailabilityStatusWhenLibraryManagerIsInitialized()
     {
         SystemManager systemManager =new SystemManager();
-        systemManager.setLibraryConsole(new LibraryConsole());
+       // systemManager.setLibraryConsole(new ConsoleStub());
         Map<Integer,Boolean> testBookAvailabilityList=new HashMap<Integer,Boolean>();
         testBookAvailabilityList.put(1,Boolean.TRUE);
         testBookAvailabilityList.put(2,Boolean.TRUE);
@@ -33,22 +34,31 @@ public class TestSystemManager {
     }
 
     @Test
-    public void testBookIsIssuedWhenAnAvailableBookIsReserved()
-    {
+    public void testBookIsIssuedWhenAnAvailableBookIsReserved() throws IOException {
         SystemManager systemManager =new SystemManager();
-        systemManager.setLibraryConsole(new LibraryConsole());
+        ConsoleStub stub=new ConsoleStub();
+        setMemberCredentials(stub);
+        systemManager.setLibraryConsole(stub);
 
         Assert.assertTrue(systemManager.reserveBookWithGivenID(1));
     }
 
+    private void setMemberCredentials(ConsoleStub stub) {
+        stub.setLoginCredentialsFromUser("111-1111");
+        stub.setLoginCredentialsFromUser("abc");
+    }
+
     @Test
-    public void testIfOnceAnAvailableBookIsReservedItCannotBeReservedAgain()
-    {
+    public void testIfOnceAnAvailableBookIsReservedItCannotBeReservedAgain() throws IOException {
         SystemManager systemManager =new SystemManager();
-        systemManager.setLibraryConsole(new LibraryConsole());
+        ConsoleStub stub=new ConsoleStub();
+        setMemberCredentials(stub);
+        systemManager.setLibraryConsole(stub);
 
         systemManager.reserveBookWithGivenID(2);
-        Assert.assertFalse("We do not have the book yet", systemManager.reserveBookWithGivenID(2));
+        setMemberCredentials(stub);
+
+        Assert.assertFalse(systemManager.reserveBookWithGivenID(2));
     }
 
 

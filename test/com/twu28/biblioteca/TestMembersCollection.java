@@ -13,8 +13,8 @@ public class TestMembersCollection {
     public void testInitializationOfLibraryMembers()
     {
         List<Member> member=new ArrayList<Member>();
-        member.add(new Member("ABC",111-1111,"abc"));
-        member.add(new Member("XYZ",222-2222,"xyz"));
+        member.add(new Member("ABC","111-1111","abc"));
+        member.add(new Member("XYZ","222-2222","xyz"));
         Assert.assertEquals(member, MembersCollection.getInstance().getListOfLibraryMembers());
     }
 

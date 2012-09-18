@@ -11,7 +11,7 @@ public class TestConsoleStub {
     @Test
     public void testViewBooksOptionFromTheMenuIsTriggered() throws IOException {
         ConsoleStub stub=new ConsoleStub();
-        stub.setInputTakenFromUser(1);
+        stub.setInputTakenFromUser("1");
       //  stub.takeInputFromConsole();
         stub.startTheRequiredProcess();
         String books="1.The Girl With A Dragon Tattoo\n2.The Secret\n3.The Monk Who Sold His Ferrari\n";
@@ -20,43 +20,55 @@ public class TestConsoleStub {
     }
 
     @Test
-    public void testReservingBookWithIDOne()
-    {
+    public void testReservingBookWithIDOne() throws IOException {
         ConsoleStub stub=new ConsoleStub();
-        stub.setInputTakenFromUser(2);
+        stub.setInputTakenFromUser("2");
+        setCredentialsOfUser(stub);
+
         stub.startTheRequiredProcess();
+
         Assert.assertEquals("Thank you!Enjoy the Book",stub.getRequiredOutputToBePrintedOnConsole());
     }
 
+    private void setCredentialsOfUser(ConsoleStub stub) {
+        stub.setLoginCredentialsFromUser("111-1111");
+        stub.setLoginCredentialsFromUser("abc");
+    }
+
     @Test
-    public void testReservingBookWithIDOneTwice()
-    {
+    public void testReservingBookWithIDOneTwice() throws IOException {
         ConsoleStub stub=new ConsoleStub();
-        stub.setInputTakenFromUser(2);
+        stub.setInputTakenFromUser("2");
+        setCredentialsOfUser(stub);
+
         stub.startTheRequiredProcess();
-        stub.setInputTakenFromUser(2);
+
+        stub.setInputTakenFromUser("2");
+        setCredentialsOfUser(stub);
+
         stub.startTheRequiredProcess();
+
         Assert.assertEquals("We do not have the book yet",stub.getRequiredOutputToBePrintedOnConsole());
 
     }
 
     @Test
-    public void testReturningLibraryCardNumberToMember()
-    {
+    public void testReturningLibraryCardNumberToMember() throws IOException {
         ConsoleStub stub=new ConsoleStub();
-        stub.setInputTakenFromUser(3);
+        stub.setInputTakenFromUser("3");
         stub.startTheRequiredProcess();
-        Assert.assertEquals("Library Card Number:1",stub.getRequiredOutputToBePrintedOnConsole());
+        Assert.assertEquals("Please talk to the Librarian. Thank you.",stub.getRequiredOutputToBePrintedOnConsole());
     }
 
     @Test
-    public void testInvalidOptionByTheUserIsDetected()
-    {
+    public void testInvalidOptionByTheUserIsDetected() throws IOException {
         ConsoleStub stub=new ConsoleStub();
-        stub.setInputTakenFromUser(5);
+        stub.setInputTakenFromUser("5");
         stub.startTheRequiredProcess();
         Assert.assertEquals("Invalid Option",stub.getRequiredOutputToBePrintedOnConsole());
     }
+
+
 
 
 

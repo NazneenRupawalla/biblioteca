@@ -30,7 +30,7 @@ public class ApplicationDriver {
     }
 
     private int getConsoleInput() throws IOException {
-        return console.takeInputFromConsole();
+        return Integer.parseInt(console.takeInputFromConsole());
     }
 
     private void navigateAccordingToMenuOption() throws IOException {
@@ -47,7 +47,7 @@ public class ApplicationDriver {
                     manager.reserveBookWithGivenID(ID);
                     break;
                 case 3:
-                    console.printToConsole("Please talk to Librarian. Thank you.");
+                    console.printToConsole("Please talk to the Librarian. Thank you.");
                     break;
                 case 4:
                     console.printToConsole("Exiting Application");
