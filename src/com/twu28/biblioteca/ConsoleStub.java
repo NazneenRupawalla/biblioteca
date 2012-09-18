@@ -50,6 +50,9 @@ public class ConsoleStub implements Console {
                 printToConsole("Please talk to the Librarian. Thank you.");
                 break;
             case 4:
+                manager.displayMoviesTheLibraryOwns();
+                break;
+            case 5:
                 printToConsole("Exiting");
                 break;
             default:

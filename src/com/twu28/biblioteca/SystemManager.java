@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SystemManager implements Printable {
+public class SystemManager {
 
-    Library publicLibrary=null;
-    Map<Integer,Boolean> bookAvailability=new HashMap<Integer,Boolean>();
+    private Library publicLibrary=null;
+    private Map<Integer,Boolean> bookAvailability=new HashMap<Integer,Boolean>();
     private List<Book> books=new ArrayList<Book>();
     private Console console;
     private MemberCredentialsManager loginManager;
@@ -34,14 +34,15 @@ public class SystemManager implements Printable {
 
     //TODO see if two copies of a book are present
     public void displayBooksTheLibraryOwns() {
-        displayItems();
+        BooksListing listOfBooks=new BooksListing(books);
+        listOfBooks.displayItems(console);
     }
 
     public String displayAvailabilityStatusOfBooks() {
         return bookAvailability.toString();
 
     }
-     //TODO ask user for lib card number and associate book with the member
+
     public Boolean reserveBookWithGivenID(int bookID) throws IOException {
         if(!checkIfUserIsAMember()){
             console.printToConsole("Please check your login credentials");
@@ -69,6 +70,7 @@ public class SystemManager implements Printable {
         userName=console.takeInputFromConsole();
         console.printToConsole("Enter your password:");
         String password=console.takeInputFromConsole();
+        //Tell-dont ask???
         return loginManager.validateMember(userName,password);
     }
 
@@ -78,20 +80,14 @@ public class SystemManager implements Printable {
     }
 
 
-    @Override
-    public void displayItems() {
-        StringBuilder booksList=new StringBuilder();
-        for (Book book : books) {
-            booksList.append(book.getID());
-            booksList.append(".");
-            booksList.append(book.getName().trim());
-            booksList.append("\n");
 
-        }
-        console.printToConsole(booksList.toString());
-    }
 
     public void setLibraryConsole(Console console) {
         this.console=console;
+    }
+
+    public void displayMoviesTheLibraryOwns() {
+        MovieListing listOfMovies=new MovieListing(publicLibrary.getListOfMovies());
+        listOfMovies.displayItems(console);
     }
 }

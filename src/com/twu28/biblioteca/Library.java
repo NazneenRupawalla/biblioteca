@@ -4,16 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    List<Book> booksInLibrary=new ArrayList<Book>();
-    List<Integer> bookCodeIDList=new ArrayList<Integer>();
+    private List<Book> booksInLibrary=new ArrayList<Book>();
     private static Library libInstance = null;
+    private List<Movie> movieCollection=new ArrayList<Movie>();
 
     private Library() {
+        addBooks();
+        addMovies();
+
+    }
+
+    private void addMovies() {
+        movieCollection.add(new Movie("The Shawshank Redemption",1994,"Frank Darabont",9.3));
+        movieCollection.add(new Movie("Swades",2004,"Ashutosh Gowarikar",9.5));
+//        movieCollection.add(new Movie("Forest Gump",1994,"Robert Zemeckis",8.7));
+//        movieCollection.add(new Movie("Sarfarosh",1999,"John Mattan",7.8));
+//        movieCollection.add(new Movie("The Terminal",2004,"Steven Spielberg",7.2));
+//        movieCollection.add(new Movie("Shool",1999,"E.Nivas",9.8));
+//        movieCollection.add(new Movie("Catch Me If You Can",2002,"Steven Spielberg",7.9));
+//        movieCollection.add(new Movie("Dil Chahta Hai",1994,"Farhan Akhtar",9.6));
+
+    }
+
+    private void addBooks() {
         booksInLibrary.add(new Book("The Girl With A Dragon Tattoo",1));
         booksInLibrary.add(new Book("The Secret",2));
         booksInLibrary.add(new Book("The Monk Who Sold His Ferrari",3));
-
-
     }
 
     public static Library getInstance() {
@@ -25,18 +41,12 @@ public class Library {
     }
 
 
-
-//    public List<Integer> getBooksCodeId()
-//    {
-//        for (Book book : booksInLibrary) {
-//           bookCodeIDList.add(book.getID());
-//
-//        }
-//        return bookCodeIDList;
-//
-//    }
-
     public List<Book> getListOfBooksToMaintainAvailabilityStatus() {
         return booksInLibrary;
+    }
+
+    public List<Movie> getListOfMovies()
+    {
+        return movieCollection;
     }
 }

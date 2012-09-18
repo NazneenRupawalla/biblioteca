@@ -25,7 +25,7 @@ public class ApplicationDriver {
             menuOption = getConsoleInput();
             navigateAccordingToMenuOption();
 
-        }while(menuOption!=4);
+        }while(menuOption!=5);
 
     }
 
@@ -50,6 +50,9 @@ public class ApplicationDriver {
                     console.printToConsole("Please talk to the Librarian. Thank you.");
                     break;
                 case 4:
+                    manager.displayMoviesTheLibraryOwns();
+                    break;
+                case 5:
                     console.printToConsole("Exiting Application");
                     break;
                 default:
@@ -64,7 +67,8 @@ public class ApplicationDriver {
         menu.append("1:View the Books\n");
         menu.append("2:Reserve a Book\n");
         menu.append("3:Ask for Details\n");
-        menu.append("4:Exit\n");
+        menu.append("4:View the Movies\n");
+        menu.append("5:Exit\n");
 
 
         System.out.println(menu);

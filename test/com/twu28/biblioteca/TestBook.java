@@ -7,7 +7,7 @@ import org.junit.Test;
 public class TestBook {
 
     @Test
-    public void testIfABookIsInitialized()
+    public void testIfABookIsInitializedProperly()
     {
         Book fictionBook=new Book("Coma",1);
         Assert.assertEquals("Coma",fictionBook.getName());
