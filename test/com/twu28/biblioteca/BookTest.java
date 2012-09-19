@@ -4,7 +4,7 @@ package com.twu28.biblioteca;
 import junit.framework.Assert;
 import org.junit.Test;
 
-public class TestBook {
+public class BookTest {
 
     @Test
     public void testIfABookIsInitializedProperly()

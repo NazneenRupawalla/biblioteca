@@ -20,8 +20,11 @@ public class Member {
 
         Member memberToBeCompared = (Member) toBeCompared;
 
-        if (!userName.equals(memberToBeCompared.userName)) return true;
-        if (memberFirstName != null ? memberFirstName.equals(memberToBeCompared.memberFirstName) : memberToBeCompared.memberFirstName != null) return true;
+        if (!userName.equals(memberToBeCompared.userName)) return false;
+
+        if(!memberFirstName.equals(memberToBeCompared.memberFirstName)) return false;
+        if(!password.equals(memberToBeCompared.password)) return false;
+
         return true;
     }
 

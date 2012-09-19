@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestLibrary {
+public class LibraryTest {
 
 //    @Test
 //    public void testLibraryInitialization()
