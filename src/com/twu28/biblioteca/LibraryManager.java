@@ -3,22 +3,22 @@ package com.twu28.biblioteca;
 import java.io.IOException;
 
 
-public class ApplicationDriver {
+public class LibraryManager {
 
 
-    private SystemManager manager;
-    private LibraryConsole console=new LibraryConsole();
+    private Library publicLibrary;
+    private Console console;
     private int menuOption;
+    private MemberCredentialsManager loginManager;
 
-    public void start() throws IOException {
-        console.printToConsole("Welcome to Biblioteca");
-        getMenuOptionFromUser();
-
+    public LibraryManager(Console console) {
+        this.console=console;
     }
 
-    private void getMenuOptionFromUser() throws IOException {
-        manager=new SystemManager();
-        manager.setLibraryConsole(console);
+
+    public void startTheApplication() throws IOException {
+        publicLibrary=Library.getInstance();
+        publicLibrary.setConsole(console);
         do{
 
             showMenu();
@@ -26,8 +26,8 @@ public class ApplicationDriver {
             navigateAccordingToMenuOption();
 
         }while(menuOption!=5);
-
     }
+
 
     private int getConsoleInput() throws IOException {
         return Integer.parseInt(console.takeInputFromConsole());
@@ -39,18 +39,23 @@ public class ApplicationDriver {
             {
                 case 1:
                     console.printToConsole("Books\n");
-                    manager.displayBooksTheLibraryOwns();
+                    publicLibrary.displayBooksTheLibraryOwns();
                     break;
                 case 2:
+                    loginManager=new MemberCredentialsManager();
+                    if(!checkIfUserIsAMember()) {
+                        console.printToConsole("Please check your login credentials");
+                        break;
+                    }
                     console.printToConsole("Please enter ID of the book");
                     int ID=getConsoleInput();
-                    manager.reserveBookWithGivenID(ID);
+                    publicLibrary.reserveBookWithGivenID(ID);
                     break;
                 case 3:
                     console.printToConsole("Please talk to the Librarian. Thank you.");
                     break;
                 case 4:
-                    manager.displayMoviesTheLibraryOwns();
+                    publicLibrary.displayMoviesTheLibraryOwns();
                     break;
                 case 5:
                     console.printToConsole("Exiting Application");
@@ -60,8 +65,18 @@ public class ApplicationDriver {
             }
 
     }
-      //do I use printable here also??
-    private static void showMenu() {
+
+    private Boolean checkIfUserIsAMember() throws IOException {
+        console.printToConsole("Please Login:\nEnter your Username:");
+        String userName=console.takeInputFromConsole();
+        console.printToConsole("Enter your password:");
+        String password=console.takeInputFromConsole();
+        //Tell-dont ask???
+        return loginManager.validateMember(userName,password);
+    }
+
+
+    private void showMenu() {
         StringBuilder menu=new StringBuilder();
         menu.append("Please choose an option from the menu listed:\n");
         menu.append("1:View the Books\n");
@@ -69,8 +84,7 @@ public class ApplicationDriver {
         menu.append("3:Ask for Details\n");
         menu.append("4:View the Movies\n");
         menu.append("5:Exit\n");
+        console.printToConsole(menu.toString());
 
-
-        System.out.println(menu);
     }
 }

@@ -2,6 +2,7 @@ package com.twu28.biblioteca;
 
 
 
+import javax.security.auth.spi.LoginModule;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,7 @@ public class ConsoleStub implements Console {
     List<Integer> menuOptions=new ArrayList<Integer>();
     private String toBePrinted;
     private List<String> userInput=new ArrayList<String>();
-    SystemManager manager=new SystemManager();
-    //SystemManager manager=new SystemManager();
+    Library publicLibrary;
 
     @Override
     public void printToConsole(String toBePrinted) {
@@ -36,21 +36,24 @@ public class ConsoleStub implements Console {
 
     public void startTheRequiredProcess() throws IOException {
 
-        manager.setLibraryConsole(this);
+        publicLibrary=Library.getInstance();
+        publicLibrary.setConsole(this);
 
         switch(Integer.parseInt(userInput.remove(0)))
         {
             case 1:
-                manager.displayBooksTheLibraryOwns();
+                publicLibrary.displayBooksTheLibraryOwns();
                 break;
             case 2:
-                manager.reserveBookWithGivenID(1);
+                MemberCredentialsManager loginManager=new MemberCredentialsManager();
+                loginManager.validateMember(takeInputFromConsole(),takeInputFromConsole());
+                publicLibrary.reserveBookWithGivenID(1);
                 break;
             case 3:
                 printToConsole("Please talk to the Librarian. Thank you.");
                 break;
             case 4:
-                manager.displayMoviesTheLibraryOwns();
+                publicLibrary.displayMoviesTheLibraryOwns();
                 break;
             case 5:
                 printToConsole("Exiting");

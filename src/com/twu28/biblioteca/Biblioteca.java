@@ -9,8 +9,8 @@ public class Biblioteca {
 
 
     public static void main(String args[]) throws IOException {
-        ApplicationDriver driver=new ApplicationDriver();
-            driver.start();
+        LibraryManager manager=new LibraryManager(new LibraryConsole());
+        manager.startTheApplication();
     }
 
 }

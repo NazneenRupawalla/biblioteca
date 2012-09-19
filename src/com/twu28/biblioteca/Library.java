@@ -1,16 +1,23 @@
 package com.twu28.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Library {
     private List<Book> booksInLibrary=new ArrayList<Book>();
     private static Library libInstance = null;
     private List<Movie> movieCollection=new ArrayList<Movie>();
+    private Console console;
+    private Map<Integer, Boolean> bookAvailability=new HashMap<Integer, Boolean>();
 
     private Library() {
         addBooks();
         addMovies();
+        for (Book book : booksInLibrary) {
+            bookAvailability.put(book.getID(),Boolean.TRUE);
+        }
 
     }
 
@@ -41,12 +48,42 @@ public class Library {
     }
 
 
-    public List<Book> getListOfBooksToMaintainAvailabilityStatus() {
-        return booksInLibrary;
+
+    public void displayBooksTheLibraryOwns() {
+        BooksListing listOfBooks=new BooksListing(booksInLibrary);
+        listOfBooks.displayItems(console);
+
     }
 
-    public List<Movie> getListOfMovies()
-    {
-        return movieCollection;
+    public void setConsole(Console console) {
+        this.console=console;
+    }
+
+    public Boolean reserveBookWithGivenID(int bookID) {
+        Boolean availability=bookAvailability.get(bookID);
+        if(!availability)
+        {
+            console.printToConsole("We do not have the book yet");
+            return Boolean.FALSE;
+        }
+        updateAvailabilityStatusOfBook(bookID, Boolean.FALSE);
+        console.printToConsole("Thank you!Enjoy the Book");
+        //issueBookToMember(bookID);
+        return Boolean.TRUE;
+
+    }
+
+    private void updateAvailabilityStatusOfBook(int bookID, Boolean status) {
+        bookAvailability.remove(bookID);
+        bookAvailability.put(bookID,status);
+    }
+
+    public void displayMoviesTheLibraryOwns() {
+        MovieListing listOfMovies=new MovieListing(movieCollection);
+        listOfMovies.displayItems(console);
+    }
+
+    public static void destroyInstance() {
+        libInstance=null;
     }
 }
