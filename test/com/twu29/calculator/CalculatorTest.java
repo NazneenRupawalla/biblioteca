@@ -31,10 +31,95 @@ public class CalculatorTest {
     }
 
     @Test
+    public void testCorrectResultIsComputedWhenMultiplicationIsPerformed()
+    {
+        calculator.multiply(4,5,6);
+        Assert.assertEquals(120.0,calculator.getFinalResult());
+    }
+
+    @Test
+    public void testCorrectResultIsComputedWhenDivisionIsPerformed()
+    {
+        calculator.divide(7,4);
+        Assert.assertEquals(1.75,calculator.getFinalResult());
+    }
+
+    @Test
     public void testCorrectResultIsComputedWhenSubtractionIsPerformedAfterAddition()
     {
         calculator.add(1,3,4);
         calculator.subtract(3,2,1);
         Assert.assertEquals(2.0,calculator.getFinalResult());
     }
+
+
+    @Test
+    public void testCorrectResultIsComputedWhenAdditionIsPerformedAfterSubtraction()
+    {
+        calculator.subtract(3,2,1);
+        calculator.add(1,3,4);
+
+        Assert.assertEquals(8.0,calculator.getFinalResult());
+
+    }
+
+    @Test
+    public void testCorrectResultIsComputedWhenAdditionIsPerformedAfterMultiplication()
+    {
+        calculator.multiply(3,2,1);
+        calculator.add(1,3,4);
+
+        Assert.assertEquals(14.0,calculator.getFinalResult());
+
+    }
+
+    @Test
+    public void testCorrectResultIsComputedWhenAdditionIsPerformedAfterDivision()
+    {
+        calculator.divide(4,2);
+        calculator.add(1,3,4);
+
+        Assert.assertEquals(10.0,calculator.getFinalResult());
+
+    }
+
+    @Test
+    public void testCorrectResultIsComputedWhenSubtractionIsPerformedAfterMultiplication()
+    {
+        calculator.multiply(1,3,4);
+        calculator.subtract(2,4);
+        Assert.assertEquals(6.0,calculator.getFinalResult());
+    }
+
+    @Test
+    public void testCorrectResultIsComputedWhenSubtractionIsPerformedAfterDivision()
+    {
+        calculator.divide(12,4);
+        calculator.subtract(3);
+        Assert.assertEquals(0.0,calculator.getFinalResult());
+    }
+
+
+
+    @Test
+    public void testCorrectResultIsComputedWhenDivisionIsPerformedAfterAddition()
+    {
+        calculator.add(12,4);
+        calculator.divide(2);
+        Assert.assertEquals(8.0,calculator.getFinalResult());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

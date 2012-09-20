@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Subtraction {
 
-    public double computeResult(double firstNumber,double secondNumber) {
-        if(firstNumber==0)
+    public double computeResult(double...numbers) {
+        if(numbers[0]==0)
         {
-            return secondNumber-firstNumber;
+            return numbers[1]-numbers[0];
         }
-        return firstNumber-secondNumber;
+        return numbers[0]-numbers[1];
     }
 }

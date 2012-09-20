@@ -29,6 +29,11 @@ public class AdditionTest {
 
     }
 
+    @Test   (expected = NumberFormatException.class)
+    public void testOnlyNumbersCanBeAdded()
+    {
+        addition.computeResult(Double.parseDouble("hello"),8);
+    }
 
 
 }
