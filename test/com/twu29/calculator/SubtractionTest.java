@@ -22,7 +22,16 @@ public class SubtractionTest {
 
         }
 
+        @Test
+        public void testIfCorrectNumberIsComputedWhenFirstNumberIsZero()
+        {
+            Assert.assertEquals(2.0,subtraction.computeResult(0,2));
+        }
 
-
+        @Test
+        public void testIfCorrectNumberIsComputedWhenFirstNumberIsSmallerThanTheSecond()
+        {
+            Assert.assertEquals(-4.0,subtraction.computeResult(1,5));
+        }
 
 }

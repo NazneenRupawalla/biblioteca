@@ -28,8 +28,10 @@ public class Calculator {
              numberList.add(number);
         }
         finalResult=subtraction.computeResult(finalResult,numberList.get(0));
+        System.out.println("finalResult--"+finalResult);
         while(count!=numberList.size())
         {
+            //System.out.println("count--"+numberList.get(count++));
             finalResult=subtraction.computeResult(finalResult,numberList.get(count++));
         }
 

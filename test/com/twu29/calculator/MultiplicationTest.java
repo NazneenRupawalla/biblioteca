@@ -29,4 +29,19 @@ public class MultiplicationTest {
 
     }
 
+    @Test
+    public void testIfCorrectResultIsObtainedWhenANegativeValueIsPassed()
+    {
+        Assert.assertEquals(-6.0,multiplication.computeResult(1,-2,3));
+
+    }
+
+//    @Test
+//    public void testIfZeroIsObtainedWhenOneNumberOfTheNumbersIsZero()
+//    {
+//        Assert.assertEquals(0.0,multiplication.computeResult(0,-2,3));
+//
+//    }
+
+
 }
