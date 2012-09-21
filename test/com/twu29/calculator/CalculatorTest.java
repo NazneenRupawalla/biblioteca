@@ -12,13 +12,12 @@ public class CalculatorTest {
    public void setup()
    {
        calculator=new Calculator();
-
    }
 
     @Test
     public void testCorrectResultIsComputedWhenAdditionIsPerformed()
     {
-        calculator.add(1, 1, 2);
+        calculator.add(1,1,2);
         Assert.assertEquals(4.0, calculator.getFinalResult());
 
     }
@@ -109,17 +108,12 @@ public class CalculatorTest {
         Assert.assertEquals(8.0,calculator.getFinalResult());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    public void testCorrectResultIsComputedWhenMultiplicationIsPerformedAfterDivision()
+    {
+        calculator.divide(6,3);
+        calculator.multiply(3);
+        Assert.assertEquals(6.0,calculator.getFinalResult());
+    }
 
 }

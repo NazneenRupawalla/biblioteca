@@ -39,4 +39,11 @@ public class DivisionTest {
 
     }
 
+    @Test   (expected = NumberFormatException.class)
+    public void testOnlyNumbersCanBeDivided()
+    {
+        division.computeResult(Double.parseDouble("hello"),8);
+    }
+
+
 }

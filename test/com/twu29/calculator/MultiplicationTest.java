@@ -44,4 +44,12 @@ public class MultiplicationTest {
 //    }
 
 
+    @Test   (expected = NumberFormatException.class)
+    public void testOnlyNumbersCanBeMultiplied()
+    {
+        multiplication.computeResult(Double.parseDouble("hello"),8);
+    }
+
+
+
 }

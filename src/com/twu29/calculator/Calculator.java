@@ -1,9 +1,6 @@
 package com.twu29.calculator;
 
-import sun.font.TrueTypeFont;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Calculator {
@@ -11,11 +8,11 @@ public class Calculator {
     private double finalResult=0.0;
     private Boolean operationPerformed=Boolean.FALSE;
 
+
     public void add(double... numbers) {
        Addition addition=new Addition();
-       operationPerformed= Boolean.TRUE;
-       finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
-
+        setArithmeticOperationPerformed();
+        finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
     }
 
 
@@ -24,40 +21,43 @@ public class Calculator {
     }
 
     public void subtract(double...numbers) {
+
         Subtraction subtraction=new Subtraction();
-        operationPerformed=Boolean.TRUE;
-        List<Double> numberList=new ArrayList<Double>();
-        int count=1;
-        for(double number:numbers)
-        {
-             numberList.add(number);
+        int indexOfArray=0;
+        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
+           finalResult=subtraction.computeResult(numbers[indexOfArray++],numbers[indexOfArray++]);
+        while(indexOfArray!=numbers.length){
+           finalResult=subtraction.computeResult(finalResult,numbers[indexOfArray++]);
         }
-        finalResult=subtraction.computeResult(finalResult,numberList.get(0));
-        while(count!=numberList.size())
-        {
-
-            finalResult=subtraction.computeResult(finalResult,numberList.get(count++));
-        }
-
+        setArithmeticOperationPerformed();
 
     }
 
+    private void setArithmeticOperationPerformed() {
+        operationPerformed=Boolean.TRUE;
+    }
+
+    private Boolean checkIfAnyOtherArithmeticOperationsWerePerformedBefore() {
+        return operationPerformed;
+    }
 
     public void multiply(double...numbers) {
         Multiplication multiplication=new Multiplication();
-        if(finalResult==0.0 && !operationPerformed)
+        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
             finalResult=1;
         finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
+        setArithmeticOperationPerformed();
     }
 
     public void divide(double...numbers) {
         Division division=new Division();
         int count=0;
-        if(finalResult==0.0 && !operationPerformed)
+        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
             finalResult=division.computeResult(numbers[count++],1);
 
         while(count!=numbers.length)
-        finalResult=division.computeResult(finalResult,numbers[count++]);
+            finalResult=division.computeResult(finalResult,numbers[count++]);
+        setArithmeticOperationPerformed();
     }
 
 }

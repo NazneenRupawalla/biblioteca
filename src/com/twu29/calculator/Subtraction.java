@@ -8,10 +8,8 @@ import java.util.List;
 public class Subtraction {
 
     public double computeResult(double...numbers) {
-        if(numbers[0]==0)
-        {
-            return numbers[1]-numbers[0];
-        }
+
         return numbers[0]-numbers[1];
     }
+
 }
