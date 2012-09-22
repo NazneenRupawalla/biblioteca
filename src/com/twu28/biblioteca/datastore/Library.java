@@ -1,4 +1,10 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.datastore;
+
+import com.twu28.biblioteca.BooksListing;
+import com.twu28.biblioteca.Console;
+import com.twu28.biblioteca.MovieListing;
+import com.twu28.biblioteca.model.Book;
+import com.twu28.biblioteca.model.Movie;
 
 import java.util.ArrayList;
 import java.util.HashMap;

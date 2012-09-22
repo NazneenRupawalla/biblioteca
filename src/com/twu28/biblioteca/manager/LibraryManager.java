@@ -1,4 +1,8 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.manager;
+
+import com.twu28.biblioteca.Console;
+import com.twu28.biblioteca.MemberCredentialsManager;
+import com.twu28.biblioteca.datastore.Library;
 
 import java.io.IOException;
 

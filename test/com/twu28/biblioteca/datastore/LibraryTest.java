@@ -1,15 +1,13 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.datastore;
 
 
+import com.twu28.biblioteca.ConsoleStub;
+import com.twu28.biblioteca.datastore.Library;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class LibraryTest {
 

@@ -1,6 +1,8 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.datastore;
 
 
+import com.twu28.biblioteca.datastore.MembersCollection;
+import com.twu28.biblioteca.model.Member;
 import junit.framework.Assert;
 import org.junit.Test;
 

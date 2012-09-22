@@ -1,6 +1,7 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.model;
 
 
+import com.twu28.biblioteca.model.Book;
 import junit.framework.Assert;
 import org.junit.Test;
 

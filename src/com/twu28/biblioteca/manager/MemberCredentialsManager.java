@@ -1,4 +1,7 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.manager;
+
+import com.twu28.biblioteca.datastore.MembersCollection;
+import com.twu28.biblioteca.model.Member;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +15,7 @@ public class MemberCredentialsManager {
 
     public MemberCredentialsManager()
     {
-        members=MembersCollection.getInstance().getListOfLibraryMembers();
+        members= MembersCollection.getInstance().getListOfLibraryMembers();
         initializeTheLoginCredentialsList();
     }
 

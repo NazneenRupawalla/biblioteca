@@ -1,5 +1,6 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.manager;
 
+import com.twu28.biblioteca.manager.MemberCredentialsManager;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;

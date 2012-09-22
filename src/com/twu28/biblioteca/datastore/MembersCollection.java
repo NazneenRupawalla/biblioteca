@@ -1,9 +1,9 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.datastore;
+
+import com.twu28.biblioteca.model.Member;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MembersCollection {
 
