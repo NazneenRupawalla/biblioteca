@@ -8,9 +8,8 @@ public class Calculator {
     private double finalResult=0.0;
     private Boolean operationPerformed=Boolean.FALSE;
 
-
     public void add(double... numbers) {
-       Addition addition=new Addition();
+        IOperation addition=new Addition();
         setArithmeticOperationPerformed();
         finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
     }
@@ -22,16 +21,31 @@ public class Calculator {
 
     public void subtract(double...numbers) {
 
-        Subtraction subtraction=new Subtraction();
+        IOperation subtraction=new Subtraction();
         int indexOfArray=0;
-        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
-           finalResult=subtraction.computeResult(numbers[indexOfArray++],numbers[indexOfArray++]);
-        while(indexOfArray!=numbers.length){
-           finalResult=subtraction.computeResult(finalResult,numbers[indexOfArray++]);
-        }
+        indexOfArray=performComputationIfConditionIsMet(subtraction,indexOfArray,numbers);
+        performOperationToComputeFinalResult(subtraction, indexOfArray, numbers);
         setArithmeticOperationPerformed();
 
     }
+
+
+    public void multiply(double...numbers) {
+        IOperation multiplication=new Multiplication();
+        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
+            finalResult=1;
+        finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
+        setArithmeticOperationPerformed();
+    }
+
+    public void divide(double...numbers) {
+        IOperation division=new Division();
+        int indexOfArray=0;
+        indexOfArray=performComputationIfConditionIsMet(division,indexOfArray,numbers);
+        performOperationToComputeFinalResult(division, indexOfArray, numbers);
+        setArithmeticOperationPerformed();
+    }
+
 
     private void setArithmeticOperationPerformed() {
         operationPerformed=Boolean.TRUE;
@@ -41,23 +55,18 @@ public class Calculator {
         return operationPerformed;
     }
 
-    public void multiply(double...numbers) {
-        Multiplication multiplication=new Multiplication();
-        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
-            finalResult=1;
-        finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
-        setArithmeticOperationPerformed();
+    private void performOperationToComputeFinalResult(IOperation operation, int indexOfArray, double[] numbers) {
+        while(indexOfArray!=numbers.length){
+            finalResult=operation.computeResult(finalResult,numbers[indexOfArray++]);
+        }
     }
 
-    public void divide(double...numbers) {
-        Division division=new Division();
-        int count=0;
+    private int performComputationIfConditionIsMet(IOperation operation, int indexOfArray, double[] numbers) {
         if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
-            finalResult=division.computeResult(numbers[count++],1);
+            finalResult=operation.computeResult(numbers[indexOfArray++],numbers[indexOfArray++]);
+        return indexOfArray;
 
-        while(count!=numbers.length)
-            finalResult=division.computeResult(finalResult,numbers[count++]);
-        setArithmeticOperationPerformed();
     }
+
 
 }

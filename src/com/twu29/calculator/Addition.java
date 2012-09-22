@@ -1,8 +1,9 @@
 package com.twu29.calculator;
 
-public class Addition {
+public class Addition implements IOperation{
 
-    public double computeResult(double... numbers) {
+    @Override
+    public double computeResult(double... numbers){
         double sum=0;
 
         for (double number : numbers) {

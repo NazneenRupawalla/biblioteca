@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Subtraction {
+public class Subtraction implements IOperation{
 
+    @Override
     public double computeResult(double...numbers) {
 
         return numbers[0]-numbers[1];
