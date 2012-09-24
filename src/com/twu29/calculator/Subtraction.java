@@ -10,7 +10,13 @@ public class Subtraction implements IOperation{
     @Override
     public double computeResult(double...numbers) {
 
-        return numbers[0]-numbers[1];
+        double subtractionResult=numbers[0];
+        for(int indexOfArray=1;indexOfArray<=numbers.length-1;indexOfArray++)
+        {
+             subtractionResult=subtractionResult-numbers[indexOfArray];
+        }
+
+        return subtractionResult;
     }
 
 }

@@ -1,17 +1,16 @@
 package com.twu29.calculator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Calculator {
 
     private double finalResult=0.0;
     private Boolean operationPerformed=Boolean.FALSE;
 
-    public void add(double... numbers) {
+    public void add(double... numbers) throws InvalidNumberOfOperandsException {
         IOperation addition=new Addition();
-        setArithmeticOperationPerformed();
-        finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
+            finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
+            setArithmeticOperationPerformed();
+
+
     }
 
 
@@ -19,30 +18,35 @@ public class Calculator {
         return finalResult;
     }
 
-    public void subtract(double...numbers) {
+    public void subtract(double...numbers) throws InvalidNumberOfOperandsException {
 
         IOperation subtraction=new Subtraction();
-        int indexOfArray=0;
-        indexOfArray=performComputationIfConditionIsMet(subtraction,indexOfArray,numbers);
-        performOperationToComputeFinalResult(subtraction, indexOfArray, numbers);
-        setArithmeticOperationPerformed();
+        performComputation(subtraction, numbers);
+        //includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(subtraction,numbers);
+        //setArithmeticOperationPerformed();
 
     }
 
 
-    public void multiply(double...numbers) {
+    public void multiply(double...numbers) throws InvalidNumberOfOperandsException {
         IOperation multiplication=new Multiplication();
         if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
             finalResult=1;
-        finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
-        setArithmeticOperationPerformed();
+       // try{
+            finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
+            setArithmeticOperationPerformed();
+
+        //}catch(InvalidNumberOfOperandsException invalidNumberOfOperandsException)
+        //{
+        //    System.out.println("Enter atleast two numbers");
+        //}
+      //  setArithmeticOperationPerformed();
     }
 
-    public void divide(double...numbers) {
+    public void divide(double...numbers) throws InvalidNumberOfOperandsException {
         IOperation division=new Division();
-        int indexOfArray=0;
-        indexOfArray=performComputationIfConditionIsMet(division,indexOfArray,numbers);
-        performOperationToComputeFinalResult(division, indexOfArray, numbers);
+        performComputation(division, numbers);
+        //includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(division,numbers);
         setArithmeticOperationPerformed();
     }
 
@@ -55,16 +59,38 @@ public class Calculator {
         return operationPerformed;
     }
 
-    private void performOperationToComputeFinalResult(IOperation operation, int indexOfArray, double[] numbers) {
-        while(indexOfArray!=numbers.length){
-            finalResult=operation.computeResult(finalResult,numbers[indexOfArray++]);
+    private void includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(IOperation operation, double[] numbers) throws InvalidNumberOfOperandsException {
+
+        double[] numbersFinalArray=new double[numbers.length+1];
+        int indexOfFinalArray=0;
+        //int indexOfOriginalArray=0;
+        numbersFinalArray[indexOfFinalArray++]=finalResult;
+        for (double number : numbers) {
+                numbersFinalArray[indexOfFinalArray++]=number;
         }
+
+        performOperationOnNumbers(operation, numbersFinalArray);
+
     }
 
-    private int performComputationIfConditionIsMet(IOperation operation, int indexOfArray, double[] numbers) {
+    private void performOperationOnNumbers(IOperation operation, double[] numbers) throws InvalidNumberOfOperandsException {
+       // try
+       // {
+            finalResult=operation.computeResult(numbers);
+            setArithmeticOperationPerformed();
+
+       // }catch(InvalidNumberOfOperandsException invalidNumberOfOperandsException)
+       // {
+       //     System.out.println("Enter atleast two numbers");
+       // }
+    }
+
+    private void performComputation(IOperation operation, double[] numbers) throws InvalidNumberOfOperandsException {
         if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
-            finalResult=operation.computeResult(numbers[indexOfArray++],numbers[indexOfArray++]);
-        return indexOfArray;
+            performOperationOnNumbers(operation, numbers);
+        else
+            includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(operation, numbers);
+
 
     }
 

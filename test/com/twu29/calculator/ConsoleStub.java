@@ -10,6 +10,7 @@ public class ConsoleStub implements IConsole{
     private Calculator calculator=new Calculator();
     private double finalResult;
     private double[] numbers;
+    private String output;
 
     public void setOptionFromTheUser(int menuOption) {
         this.menuOption=menuOption;
@@ -31,7 +32,9 @@ public class ConsoleStub implements IConsole{
 
     }
 
-    public void startRequiredOperation() {
+    public void startRequiredOperation() throws InvalidNumberOfOperandsException {
+        try
+        {
         switch(menuOption)
         {
             case 1:
@@ -47,19 +50,27 @@ public class ConsoleStub implements IConsole{
                 calculator.divide(numbers);
                 break;
             case 5:
-                finalResult=calculator.getFinalResult();
+                printToConsole("Result is: " + calculator.getFinalResult());
                 break;
 
+        }
+        }catch(InvalidNumberOfOperandsException exception)
+        {
+            throw new InvalidNumberOfOperandsException("Caught Exception");
         }
     }
 
     @Override
-    public void takeInputFromConsole() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public double takeInputFromConsole() {
+        return 0.0;
     }
 
     @Override
-    public double printToConsole() {
-         return finalResult;
+    public void printToConsole(String output) {
+         this.output=output;
+    }
+
+    public String getOutput() {
+          return output;
     }
 }

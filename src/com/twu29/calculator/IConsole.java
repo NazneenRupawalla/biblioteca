@@ -2,7 +2,7 @@ package com.twu29.calculator;
 
 public interface IConsole {
 
-    public void takeInputFromConsole();
-    public double printToConsole();
+    public double takeInputFromConsole();
+    public void printToConsole(String output);
 
 }
