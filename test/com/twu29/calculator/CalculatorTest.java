@@ -105,7 +105,7 @@ public class CalculatorTest {
     }
 
     @Test  (expected =InvalidNumberOfOperandsException.class)
-    public void testExceptionIsCaughtWhenNoNumbersAreEntered() throws InvalidNumberOfOperandsException {
+    public void testExceptionIsThrownWhenNoNumbersAreEntered() throws InvalidNumberOfOperandsException {
         calculator.add();
     }
 
@@ -114,6 +114,14 @@ public class CalculatorTest {
         calculator.add();
         calculator.subtract(2,3);
         Assert.assertEquals(-1,calculator.getFinalResult());
+    }
+
+    @Test  (expected = InvalidNumberOfOperandsException.class)
+    public void testFinalResultIsNotComputedWhenSecondOperationThrowsException() throws InvalidNumberOfOperandsException {
+
+        calculator.multiply(2,3);
+        calculator.divide();
+        Assert.assertEquals(5.0,calculator.getFinalResult());
     }
 
 }

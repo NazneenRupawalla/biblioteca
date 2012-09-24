@@ -43,7 +43,7 @@ public class AdditionTest {
     }
 
     @Test  (expected = InvalidNumberOfOperandsException.class)
-    public void testExceptionIsThrownWhenOnlyOneOperandIsEntered() throws InvalidNumberOfOperandsException {
+    public void testExceptionIsThrownWhenOnlyWhenOneOperandIsEntered() throws InvalidNumberOfOperandsException {
         addition.computeResult(1);
     }
 

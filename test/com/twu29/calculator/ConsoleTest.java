@@ -2,14 +2,23 @@ package com.twu29.calculator;
 
 
 import junit.framework.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class ConsoleTest {
 
+    private ConsoleStub console;
+
+    @Before
+    public void setup()
+    {
+        console=new ConsoleStub();
+
+    }
+
     @Test
     public void testIfAdditionOperationIsTriggered() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
         console.setOptionFromTheUser(1);
         console.setNumbersTakenFromTheConsole("1,2,3");
         console.startRequiredOperation();
@@ -21,7 +30,7 @@ public class ConsoleTest {
 
     @Test
     public void testIfSubtractionOperationIsTriggered() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
+
         console.setOptionFromTheUser(2);
         console.setNumbersTakenFromTheConsole("5,2,1");
         console.startRequiredOperation();
@@ -34,7 +43,7 @@ public class ConsoleTest {
 
     @Test
     public void testIfDivisionOperationIsTriggered() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
+
         console.setOptionFromTheUser(4);
         console.setNumbersTakenFromTheConsole("5,2");
         console.startRequiredOperation();
@@ -46,7 +55,7 @@ public class ConsoleTest {
 
     @Test
     public void testIfAdditionAndMultiplicationAreTriggeredConsecutively() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
+
         console.setOptionFromTheUser(3);
         console.setNumbersTakenFromTheConsole("5,2,1");
         console.startRequiredOperation();
@@ -62,7 +71,7 @@ public class ConsoleTest {
 
     @Test   (expected=NumberFormatException.class)
     public void testOnlyNumbersCanBeAdded() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
+
         console.setOptionFromTheUser(1);
         console.setNumbersTakenFromTheConsole("-,2");
         console.startRequiredOperation();
@@ -73,8 +82,8 @@ public class ConsoleTest {
     }
 
     @Test  (expected=NumberFormatException.class)
-    public void testNoNumbersAreEnteredByTheUser() throws InvalidNumberOfOperandsException {
-         ConsoleStub console=new ConsoleStub();
+    public void testExceptionIsThrownWhenNoNumbersAreEntered() throws InvalidNumberOfOperandsException {
+
         console.setOptionFromTheUser(1);
         console.setNumbersTakenFromTheConsole(" ");
         console.startRequiredOperation();
@@ -84,15 +93,12 @@ public class ConsoleTest {
 
     @Test   (expected = InvalidNumberOfOperandsException.class)
     public void testInvalidNumberOfOperandsExceptionIsCaught() throws InvalidNumberOfOperandsException {
-        ConsoleStub console=new ConsoleStub();
+
         console.setOptionFromTheUser(1);
         console.setNumbersTakenFromTheConsole("1");
         console.startRequiredOperation();
 
     }
-
-
-
 
 
 

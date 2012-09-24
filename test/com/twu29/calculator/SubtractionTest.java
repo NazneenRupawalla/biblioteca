@@ -19,28 +19,44 @@ public class SubtractionTest {
        }
 
         @Test
-        public void testIfCorrectResultIsComputedWhenTwoNumbersAreSubtracted()
-        {
+        public void testCorrectResultIsComputedWhenTwoNumbersAreSubtracted() throws InvalidNumberOfOperandsException {
             Assert.assertEquals(4.0, subtraction.computeResult(5,1));
 
         }
 
         @Test
-        public void testIfCorrectNumberIsComputedWhenFirstNumberIsZero()
-        {
+        public void testCorrectResultIsComputedWhenThreeNumbersAreSubtracted() throws InvalidNumberOfOperandsException {
+            Assert.assertEquals(1.0,subtraction.computeResult(6,2,3));
+        }
+
+        @Test
+        public void testCorrectResultIsComputedWhenFourNumbersAreSubtracted() throws InvalidNumberOfOperandsException {
+            Assert.assertEquals(0.0,subtraction.computeResult(8,2,4,2));
+        }
+
+        @Test
+        public void testCorrectNumberIsComputedWhenFirstNumberIsZero() throws InvalidNumberOfOperandsException {
             Assert.assertEquals(-2.0,subtraction.computeResult(0,2));
         }
 
         @Test
-        public void testIfCorrectNumberIsComputedWhenFirstNumberIsSmallerThanTheSecond()
-        {
+        public void testCorrectNumberIsComputedWhenFirstNumberIsSmallerThanTheSecond() throws InvalidNumberOfOperandsException {
             Assert.assertEquals(-4.0,subtraction.computeResult(1,5));
         }
 
         @Test   (expected = NumberFormatException.class)
-        public void testOnlyNumbersCanBeSubtracted()
-        {
+        public void testOnlyNumbersCanBeSubtracted() throws InvalidNumberOfOperandsException {
             subtraction.computeResult(Double.parseDouble("hello"),8);
+        }
+
+        @Test (expected=InvalidNumberOfOperandsException.class)
+        public void testExceptionIsThrownWhenNoNumbersAreEntered() throws InvalidNumberOfOperandsException {
+            subtraction.computeResult();
+        }
+
+        @Test  (expected=InvalidNumberOfOperandsException.class)
+        public void testExceptionIsThrownWhenOnlyOneNumberIsEntered() throws InvalidNumberOfOperandsException {
+            subtraction.computeResult(1);
         }
 
 

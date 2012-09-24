@@ -7,10 +7,7 @@ public class Calculator {
 
     public void add(double... numbers) throws InvalidNumberOfOperandsException {
         IOperation addition=new Addition();
-            finalResult=addition.computeResult(finalResult,addition.computeResult(numbers));
-            setArithmeticOperationPerformed();
-
-
+        performComputation(addition,numbers);
     }
 
 
@@ -22,32 +19,18 @@ public class Calculator {
 
         IOperation subtraction=new Subtraction();
         performComputation(subtraction, numbers);
-        //includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(subtraction,numbers);
-        //setArithmeticOperationPerformed();
 
     }
 
 
     public void multiply(double...numbers) throws InvalidNumberOfOperandsException {
         IOperation multiplication=new Multiplication();
-        if(!checkIfAnyOtherArithmeticOperationsWerePerformedBefore())
-            finalResult=1;
-       // try{
-            finalResult=multiplication.computeResult(finalResult,multiplication.computeResult(numbers));
-            setArithmeticOperationPerformed();
-
-        //}catch(InvalidNumberOfOperandsException invalidNumberOfOperandsException)
-        //{
-        //    System.out.println("Enter atleast two numbers");
-        //}
-      //  setArithmeticOperationPerformed();
+        performComputation(multiplication,numbers);
     }
 
     public void divide(double...numbers) throws InvalidNumberOfOperandsException {
         IOperation division=new Division();
         performComputation(division, numbers);
-        //includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(division,numbers);
-        setArithmeticOperationPerformed();
     }
 
 
@@ -63,7 +46,6 @@ public class Calculator {
 
         double[] numbersFinalArray=new double[numbers.length+1];
         int indexOfFinalArray=0;
-        //int indexOfOriginalArray=0;
         numbersFinalArray[indexOfFinalArray++]=finalResult;
         for (double number : numbers) {
                 numbersFinalArray[indexOfFinalArray++]=number;
@@ -74,15 +56,9 @@ public class Calculator {
     }
 
     private void performOperationOnNumbers(IOperation operation, double[] numbers) throws InvalidNumberOfOperandsException {
-       // try
-       // {
             finalResult=operation.computeResult(numbers);
             setArithmeticOperationPerformed();
 
-       // }catch(InvalidNumberOfOperandsException invalidNumberOfOperandsException)
-       // {
-       //     System.out.println("Enter atleast two numbers");
-       // }
     }
 
     private void performComputation(IOperation operation, double[] numbers) throws InvalidNumberOfOperandsException {
