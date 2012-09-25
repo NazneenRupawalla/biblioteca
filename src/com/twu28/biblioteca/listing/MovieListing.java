@@ -1,11 +1,13 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.listing;
 
+import com.twu28.biblioteca.Console;
+import com.twu28.biblioteca.Printable;
 import com.twu28.biblioteca.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieListing implements Printable{
+public class MovieListing implements Printable {
 
 
     private List<Movie> listOfMovies=new ArrayList<Movie>();

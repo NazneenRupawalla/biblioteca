@@ -1,11 +1,13 @@
-package com.twu28.biblioteca;
+package com.twu28.biblioteca.listing;
 
+import com.twu28.biblioteca.Console;
+import com.twu28.biblioteca.Printable;
 import com.twu28.biblioteca.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksListing implements Printable{
+public class BooksListing implements Printable {
 
     private List<Book> books=new ArrayList<Book>();
 
