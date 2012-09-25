@@ -66,8 +66,6 @@ public class Calculator {
             performOperationOnNumbers(operation, numbers);
         else
             includePreviousResultToTheOriginalArrayOfNumbersForFurtherComputation(operation, numbers);
-
-
     }
 
 

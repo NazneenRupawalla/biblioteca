@@ -23,6 +23,11 @@ public class ConsoleStubTest {
         stub.setLoginCredentialsFromUser("abc");
     }
 
+    @Test  (expected=NumberFormatException.class)
+    public void testOnlyNumbersCanBeEnteredForSelectingAMenuOption() throws IOException {
+        stub.setInputTakenFromUser("h");
+        stub.startTheRequiredProcess();
+    }
 
     @Test
     public void testViewBooksOptionFromTheMenuIsTriggered() throws IOException {

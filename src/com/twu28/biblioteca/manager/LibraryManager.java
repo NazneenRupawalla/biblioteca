@@ -13,6 +13,7 @@ public class LibraryManager {
     private Console console;
     private int menuOption;
     private MemberCredentialsManager loginManager;
+    private boolean sessionIsAlive=false;
 
     public LibraryManager(Console console) {
         this.console=console;
@@ -46,13 +47,12 @@ public class LibraryManager {
                     break;
                 case 2:
                     loginManager=new MemberCredentialsManager();
-                    if(!checkIfUserIsAMember()) {
-                        console.printToConsole("Please check your login credentials");
-                        break;
+                    if(preConditionToReservingABookIsMet()) {
+                        console.printToConsole("Please enter ID of the book");
+                        int ID=getConsoleInput();
+                        publicLibrary.reserveBookWithGivenID(ID);
                     }
-                    console.printToConsole("Please enter ID of the book");
-                    int ID=getConsoleInput();
-                    publicLibrary.reserveBookWithGivenID(ID);
+
                     break;
                 case 3:
                     console.printToConsole("Please talk to the Librarian. Thank you.");
@@ -68,6 +68,18 @@ public class LibraryManager {
             }
 
     }
+
+    private boolean preConditionToReservingABookIsMet() throws IOException {
+        if(sessionIsAlive) return true;
+        if(!checkIfUserIsAMember()) {
+            console.printToConsole("Please check your login credentials");
+            return false;
+        }
+        sessionIsAlive=true;
+        return true;
+
+    }
+
 
     private Boolean checkIfUserIsAMember() throws IOException {
         console.printToConsole("Please Login:\nEnter your Username:");
