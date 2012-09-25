@@ -2,8 +2,8 @@ package com.twu28.biblioteca.model;
 
 public class Book {
 
-    private String name;
-    private int bookCode;
+    private final String name;
+    private final int bookCode;
 
     public Book(String name, int bookCode) {
         this.name=name;
@@ -26,10 +26,8 @@ public class Book {
 
         Book bookToBeCompared = (Book) toBeCompared;
 
-        if (!name.equals(bookToBeCompared.name)) return false;
-        if(!(bookCode==bookToBeCompared.bookCode)) return false;
+        return name.equals(bookToBeCompared.name) && bookCode == bookToBeCompared.bookCode;
 
-        return true;
     }
     @Override
     public int hashCode() {

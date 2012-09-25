@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleStub implements Console {
-    List<Integer> menuOptions=new ArrayList<Integer>();
+    //List<Integer> menuOptions=new ArrayList<Integer>();
     private String toBePrinted;
     private List<String> userInput=new ArrayList<String>();
-    Library publicLibrary;
 
     @Override
     public void printToConsole(String toBePrinted) {
@@ -38,7 +37,7 @@ public class ConsoleStub implements Console {
 
     public void startTheRequiredProcess() throws IOException {
 
-        publicLibrary=Library.getInstance();
+        Library publicLibrary = Library.getInstance();
         publicLibrary.setConsole(this);
 
         switch(Integer.parseInt(userInput.remove(0)))

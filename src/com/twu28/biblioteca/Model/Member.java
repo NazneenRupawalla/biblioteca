@@ -1,9 +1,9 @@
 package com.twu28.biblioteca.model;
 
 public class Member {
-    private String memberFirstName;
-    private String userName;
-    private String password;
+    private final String memberFirstName;
+    private final String userName;
+    private final String password;
 
     public Member(String name, String username, String password) {
         this.memberFirstName=name;
@@ -23,9 +23,8 @@ public class Member {
         if (!userName.equals(memberToBeCompared.userName)) return false;
 
         if(!memberFirstName.equals(memberToBeCompared.memberFirstName)) return false;
-        if(!password.equals(memberToBeCompared.password)) return false;
+        return password.equals(memberToBeCompared.password);
 
-        return true;
     }
 
 

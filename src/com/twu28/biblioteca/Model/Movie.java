@@ -2,10 +2,10 @@ package com.twu28.biblioteca.model;
 
 public class Movie {
 
-    private String name;
-    private int yearOfRelease;
-    private String directorName;
-    private double rating;
+    private final String name;
+    private final int yearOfRelease;
+    private final String directorName;
+    private final double rating;
 
     public Movie(String name, int yearOfRelease, String directorName, double rating) {
         this.name=name;

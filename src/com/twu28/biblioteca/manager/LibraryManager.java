@@ -10,7 +10,7 @@ public class LibraryManager {
 
 
     private Library publicLibrary;
-    private Console console;
+    private final Console console;
     private int menuOption;
     private MemberCredentialsManager loginManager;
     private boolean sessionIsAlive=false;
@@ -22,6 +22,7 @@ public class LibraryManager {
 
     public void startTheApplication() throws IOException {
         publicLibrary=Library.getInstance();
+        loginManager=new MemberCredentialsManager();
         publicLibrary.setConsole(console);
         do{
 
@@ -39,39 +40,37 @@ public class LibraryManager {
 
     private void navigateAccordingToMenuOption() throws IOException {
         //do I use command pattern to avoid number-case
-            switch(menuOption)
-            {
-                case 1:
-                    console.printToConsole("Books\n");
-                    publicLibrary.displayBooksTheLibraryOwns();
-                    break;
-                case 2:
-                    loginManager=new MemberCredentialsManager();
-                    if(preConditionToReservingABookIsMet()) {
+        switch(menuOption)
+        {
+           case 1:
+               console.printToConsole("Books\n");
+               publicLibrary.displayBooksTheLibraryOwns();
+               break;
+           case 2:
+                if(checkPreConditionsToReservingABook()) {
                         console.printToConsole("Please enter ID of the book");
                         int ID=getConsoleInput();
                         publicLibrary.reserveBookWithGivenID(ID);
-                    }
-
-                    break;
-                case 3:
-                    console.printToConsole("Please talk to the Librarian. Thank you.");
-                    break;
-                case 4:
-                    publicLibrary.displayMoviesTheLibraryOwns();
-                    break;
-                case 5:
-                    console.printToConsole("Exiting Application");
-                    break;
-                default:
-                    console.printToConsole("Invalid Option");
-            }
-
+                }
+                break;
+           case 3:
+                console.printToConsole("Please talk to the Librarian. Thank you.");
+                break;
+           case 4:
+                publicLibrary.displayMoviesTheLibraryOwns();
+                break;
+           case 5:
+                console.printToConsole("Exiting Application");
+                break;
+           default:
+                console.printToConsole("Invalid Option");
+        }
     }
 
-    private boolean preConditionToReservingABookIsMet() throws IOException {
+    private boolean checkPreConditionsToReservingABook() throws IOException {
         if(sessionIsAlive) return true;
-        if(!checkIfUserIsAMember()) {
+
+        if(!performLogin()) {
             console.printToConsole("Please check your login credentials");
             return false;
         }
@@ -80,16 +79,14 @@ public class LibraryManager {
 
     }
 
-
-    private Boolean checkIfUserIsAMember() throws IOException {
+    private boolean performLogin() throws IOException {
         console.printToConsole("Please Login:\nEnter your Username:");
-        String userName=console.takeInputFromConsole();
+        String userName = console.takeInputFromConsole();
         console.printToConsole("Enter your password:");
-        String password=console.takeInputFromConsole();
-        //Tell-dont ask???
-        return loginManager.validateMember(userName,password);
-    }
+        String password = console.takeInputFromConsole();
+        return loginManager.validateMember(userName, password);
 
+    }
 
     private void showMenu() {
         StringBuilder menu=new StringBuilder();

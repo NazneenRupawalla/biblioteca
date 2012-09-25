@@ -1,8 +1,8 @@
 package com.twu28.biblioteca.datastore;
 
-import com.twu28.biblioteca.BooksListing;
+import com.twu28.biblioteca.listing.BooksListing;
 import com.twu28.biblioteca.Console;
-import com.twu28.biblioteca.MovieListing;
+import com.twu28.biblioteca.listing.MovieListing;
 import com.twu28.biblioteca.model.Book;
 import com.twu28.biblioteca.model.Movie;
 
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Library {
-    private List<Book> booksInLibrary=new ArrayList<Book>();
+    private final List<Book> booksInLibrary=new ArrayList<Book>();
     private static Library libInstance = null;
-    private List<Movie> movieCollection=new ArrayList<Movie>();
+    private final List<Movie> movieCollection=new ArrayList<Movie>();
     private Console console;
-    private Map<Integer, Boolean> bookAvailability=new HashMap<Integer, Boolean>();
+    private final Map<Integer, Boolean> bookAvailability=new HashMap<Integer, Boolean>();
 
     private Library() {
         addBooks();
@@ -72,16 +72,16 @@ public class Library {
             console.printToConsole("We do not have the book yet");
             return Boolean.FALSE;
         }
-        updateAvailabilityStatusOfBook(bookID, Boolean.FALSE);
+        updateAvailabilityStatusOfBook(bookID);
         console.printToConsole("Thank you!Enjoy the Book");
         //issueBookToMember(bookID);
         return Boolean.TRUE;
 
     }
 
-    private void updateAvailabilityStatusOfBook(int bookID, Boolean status) {
+    private void updateAvailabilityStatusOfBook(int bookID) {
         bookAvailability.remove(bookID);
-        bookAvailability.put(bookID,status);
+        bookAvailability.put(bookID, Boolean.FALSE);
     }
 
     public void displayMoviesTheLibraryOwns() {

@@ -8,7 +8,7 @@ import java.util.List;
 public class MembersCollection {
 
     private static MembersCollection membersInstance=null;
-    private List<Member> memberList=new ArrayList<Member>();
+    private final List<Member> memberList=new ArrayList<Member>();
 
     public static MembersCollection getInstance() {
         if(membersInstance==null)
@@ -21,7 +21,7 @@ public class MembersCollection {
     private MembersCollection()
     {
         memberList.add(new Member("ABC","111-1111", "abc"));
-        memberList.add(new Member("XYZ","222-2222", "xyz"));
+        memberList.add(new Member("XYZ","111-1112", "xyz"));
 
     }
 

@@ -11,7 +11,7 @@ import java.util.Map;
 public class MemberCredentialsManager {
 
     private List<Member> members=new ArrayList<Member>();
-    private Map<String,String> credentials=new HashMap<String,String>();
+    private final Map<String,String> credentials=new HashMap<String,String>();
 
     public MemberCredentialsManager()
     {
@@ -27,12 +27,14 @@ public class MemberCredentialsManager {
             credentials.put(member.getUserName(),member.getPassword());
         }
 
+
     }
 
     public Boolean validateMember(String userName, String password)
     {
         for (Map.Entry<String, String> integerStringEntry : credentials.entrySet()) {
-             return (integerStringEntry.getKey().equals(userName) && integerStringEntry.getValue().equals(password));
+             if(integerStringEntry.getKey().equals(userName) && integerStringEntry.getValue().equals(password))
+                return true;
         }
         return false;
     }

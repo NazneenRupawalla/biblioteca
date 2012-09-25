@@ -34,5 +34,8 @@ public class CredentialsManagerTest {
         Assert.assertFalse(manager.validateMember("333-3333","xyz"));
     }
 
-
+    @Test
+    public void testIfUsernameAnDPasswordIsValidatedProperlyForTheUserSecondInTheList() {
+        Assert.assertTrue(manager.validateMember("111-1112","xyz"));
+    }
 }

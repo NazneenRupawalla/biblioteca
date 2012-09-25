@@ -7,8 +7,8 @@ public class ConsoleStub implements IConsole{
 
     private int menuOption;
 
-    private Calculator calculator=new Calculator();
-    private double finalResult;
+    private final Calculator calculator=new Calculator();
+
     private double[] numbers;
     private String output;
 

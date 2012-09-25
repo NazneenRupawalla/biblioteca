@@ -1,7 +1,6 @@
 package com.twu28.biblioteca.listing;
 
 import com.twu28.biblioteca.Console;
-import com.twu28.biblioteca.Printable;
 import com.twu28.biblioteca.model.Movie;
 
 import java.util.ArrayList;
@@ -22,9 +21,9 @@ public class MovieListing implements Printable {
         //does rating have to be sorted??
         list.append("Movie | Year | Director | Rating\n");
         for (Movie movie : listOfMovies) {
-            list.append(movie.getName()+" | ");
-            list.append(movie.getYearOfRelease()+" | ");
-            list.append(movie.getDirectorsName()+" | ");
+            list.append(movie.getName()).append(" | ");
+            list.append(movie.getYearOfRelease()).append(" | ");
+            list.append(movie.getDirectorsName()).append(" | ");
             list.append(movie.getRating());
             list.append("\n");
 

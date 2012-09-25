@@ -74,6 +74,8 @@ public class ConsoleStubTest {
 
     }
 
+
+
     @Test
     public void testReturningLibraryCardNumberToMember() throws IOException {
         stub.setInputTakenFromUser("3");

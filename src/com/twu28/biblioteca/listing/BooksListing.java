@@ -1,7 +1,6 @@
 package com.twu28.biblioteca.listing;
 
 import com.twu28.biblioteca.Console;
-import com.twu28.biblioteca.Printable;
 import com.twu28.biblioteca.model.Book;
 
 import java.util.ArrayList;
