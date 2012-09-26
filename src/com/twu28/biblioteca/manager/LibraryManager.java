@@ -70,7 +70,7 @@ public class LibraryManager {
     private boolean checkPreConditionsToReservingABook() throws IOException {
         if(sessionIsAlive) return true;
 
-        if(!performLogin()) {
+        if(!checkCredentials()) {
             console.printToConsole("Please check your login credentials");
             return false;
         }
@@ -79,7 +79,7 @@ public class LibraryManager {
 
     }
 
-    private boolean performLogin() throws IOException {
+    private boolean checkCredentials() throws IOException {
         console.printToConsole("Please Login:\nEnter your Username:");
         String userName = console.takeInputFromConsole();
         console.printToConsole("Enter your password:");
