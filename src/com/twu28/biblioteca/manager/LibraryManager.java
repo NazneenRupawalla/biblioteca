@@ -1,6 +1,7 @@
 package com.twu28.biblioteca.manager;
 
 import com.twu28.biblioteca.Console;
+import com.twu28.biblioteca.LibraryConsole;
 import com.twu28.biblioteca.datastore.Library;
 
 import java.io.IOException;
@@ -14,6 +15,11 @@ public class LibraryManager {
     private int menuOption;
     private MemberCredentialsManager loginManager;
     private boolean sessionIsAlive=false;
+
+    public LibraryManager()
+    {
+        this(new LibraryConsole());
+    }
 
     public LibraryManager(Console console) {
         this.console=console;

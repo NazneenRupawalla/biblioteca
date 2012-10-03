@@ -19,7 +19,6 @@ public class Calculator {
 
         IOperation subtraction=new Subtraction();
         performComputation(subtraction, numbers);
-
     }
 
 

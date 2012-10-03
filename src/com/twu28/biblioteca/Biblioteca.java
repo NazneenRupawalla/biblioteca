@@ -11,7 +11,7 @@ public class Biblioteca {
 
 
     public static void main(String args[]) throws IOException {
-        LibraryManager manager=new LibraryManager(new LibraryConsole());
+        LibraryManager manager=new LibraryManager();
         manager.startTheApplication();
     }
 
